@@ -3,11 +3,13 @@
  * @returns { Promise<void> }
  */
 exports.up = function (knex) {
-  return knex.schema.createTable("checklist", (table) => {
+  return knex.schema.createTable("calendar_activity", (table) => {
     table.increments("id").primary();
     table.integer("user_id").unsigned().notNullable();
     table.foreign("user_id").references("id").inTable("user");
-    table.varchar("name").notNullable();
+    table.varchar("label").notNullable();
+    table.varchar("content").notNullable();
+    table.varchar("budget").notNullable();
     table.timestamp("created_at").defaultTo(knex.fn.now());
     table
       .timestamp("updated_at")
@@ -20,5 +22,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable("checklist");
+  return knex.schema.dropTable("calendar_activity");
 };

@@ -5,8 +5,8 @@
 exports.up = function (knex) {
   return knex.schema.createTable("user", (table) => {
     table.increments("id").primary();
-    table.string("name", 200).notNullable();
-    table.string("password", 200).notNullable();
+    table.varchar("name", 200).notNullable();
+    table.varchar("password", 200).notNullable();
     table.timestamp("created_at").defaultTo(knex.fn.now());
     table
       .timestamp("updated_at")

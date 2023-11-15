@@ -7,7 +7,7 @@ exports.up = function (knex) {
     table.increments("id").primary();
     table.integer("checklist_id").unsigned().notNullable();
     table.foreign("checklist_id").references("id").inTable("checklist");
-    table.string("text").notNullable();
+    table.varchar("text").notNullable();
     table.boolean("checked").defaultTo(false);
     table.timestamp("created_at").defaultTo(knex.fn.now());
     table
