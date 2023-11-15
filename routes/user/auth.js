@@ -20,7 +20,7 @@ router.post("/register", async (req, res) => {
   };
 
   try {
-    await knex("users").insert(newUser);
+    await knex("user").insert(newUser);
     res.status(201).send("Registered successfully");
   } catch (error) {
     console.error(error);
@@ -35,7 +35,7 @@ router.post("/login", async (req, res) => {
     return res.status(404).send("Please enter the required fields");
   }
 
-  const user = await knex("users").where({ email: email }).first();
+  const user = await knex("user").where({ email: email }).first();
   if (!user) {
     return res.status(400).send("Invalid email");
   }

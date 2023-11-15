@@ -3,7 +3,7 @@ const knex = require("knex")(require("../../knexfile"));
 const authenticate = require("../../middleware/authenticate");
 
 router.get("/", authenticate, async (req, res) => {
-  const profile = await knex("users").where({ id: req.user_id }).first();
+  const profile = await knex("user").where({ id: req.user_id }).first();
   delete profile.password;
   res.send(profile);
 });
