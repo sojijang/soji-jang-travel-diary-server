@@ -10,8 +10,6 @@ const getCurrency = async (req, res) => {
         access_key: apiKey,
       },
     });
-
-    console.log(response.data);
     res.json(response.data);
   } catch (error) {
     console.error("Error fetching data:", error);
