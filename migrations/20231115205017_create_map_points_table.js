@@ -7,6 +7,8 @@ exports.up = function (knex) {
     table.increments("id").primary();
     table.integer("user_id").unsigned().notNullable();
     table.foreign("user_id").references("id").inTable("user");
+    table.varchar("title").notNullable();
+    table.varchar("description").notNullable();
     table.double("lat").notNullable();
     table.double("lng").notNullable();
 

@@ -4,9 +4,11 @@ const getActivities = async (_req, res) => {
   try {
     const data = await knex("calendar_activity").select(
       "id",
-      "user_id",
-      "label",
-      "content",
+      // "user_id",
+      "date",
+      "location",
+      "morning_task",
+      "afternoon_task",
       "budget"
     );
     res.status(200).json(data);
@@ -38,17 +40,27 @@ const getOneActivity = async (req, res) => {
 };
 
 const postActivity = async (req, res) => {
-  if (!req.body.label || !req.body.content || !req.body.budget) {
+  if (
+    // !req.body.user_id ||
+    !req.body.date ||
+    !req.body.location ||
+    !req.body.morning_task ||
+    !req.body.afternoon_task ||
+    !req.body.budget
+  ) {
+    console.log("Request Body:", req.body);
     return res.status(400).json({
       message: "Please make sure all fields are filled out.",
     });
   }
 
   const newActivity = {
-    user_id: req.body.user_id,
-    label: req.body.label,
-    content: req.body.content,
-    budget: req.body.budget,
+    // user_id: req.body.user_id,
+    date: req.body.date,
+    location: req.body.location,
+    morning_task: req.body.morning_task,
+    afternoon_task: req.body.afternoon_task,
+    budget: parseFloat(req.body.budget),
   };
 
   try {
@@ -65,17 +77,26 @@ const postActivity = async (req, res) => {
 };
 
 const editActivity = async (req, res) => {
-  if (!req.body.label || !req.body.content || !req.body.budget) {
+  if (
+    // !req.body.user_id ||
+    !req.body.date ||
+    !req.body.location ||
+    !req.body.morning_task ||
+    !req.body.afternoon_task ||
+    !req.body.budget
+  ) {
     return res.status(400).json({
       message: "Please make sure all fields are filled out.",
     });
   }
 
   const updateActivity = {
-    user_id: req.body.user_id,
-    label: req.body.label,
-    content: req.body.content,
-    budget: req.body.budget,
+    // user_id: req.body.user_id,
+    date: req.body.date,
+    location: req.body.location,
+    morning_task: req.body.morning_task,
+    afternoon_task: req.body.afternoon_task,
+    budget: parseFloat(req.body.budget),
   };
 
   try {
@@ -89,7 +110,7 @@ const editActivity = async (req, res) => {
         .send(`Activity with ID ${req.params.id} cannot be found`);
     }
     const response = await knex("calendar_activity")
-      .select("user_id", "label", "content", "budget")
+      .select("date", "location", "morning_task", "afternoon_task", "budget")
       .where({ id: req.params.id });
     res.status(200).json(response);
   } catch (error) {

@@ -7,6 +7,7 @@ const authRoutes = require("./routes/user/auth");
 const profileRoutes = require("./routes/user/profile");
 const currencyRateRoutes = require("./routes/currency/rate");
 const calendarActivityRoutes = require("./routes/calendar/activity");
+const mapRoutes = require("./routes/map/map");
 
 const PORT = process.env.PORT || 5050;
 
@@ -21,6 +22,7 @@ app.use("/auth", authRoutes);
 app.use("/my-profile", profileRoutes);
 app.use("/currency-rate", currencyRateRoutes);
 app.use("/calendar-activity", calendarActivityRoutes);
+app.use("/map", mapRoutes);
 
 app.listen(PORT, () => {
   console.log(`Listening on port ${PORT}`);

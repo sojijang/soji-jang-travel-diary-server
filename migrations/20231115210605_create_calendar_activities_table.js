@@ -5,11 +5,14 @@
 exports.up = function (knex) {
   return knex.schema.createTable("calendar_activity", (table) => {
     table.increments("id").primary();
-    table.integer("user_id").unsigned().notNullable();
-    table.foreign("user_id").references("id").inTable("user");
-    table.varchar("label").notNullable();
-    table.varchar("content").notNullable();
-    table.varchar("budget").notNullable();
+    // table.integer("user_id").unsigned().notNullable();
+    // table.foreign("user_id").references("id").inTable("user");
+    // table.varchar("user_id").notNullable();
+    table.varchar("date").notNullable();
+    table.varchar("location").notNullable();
+    table.varchar("morning_task").notNullable();
+    table.varchar("afternoon_task").notNullable();
+    table.decimal("budget").notNullable();
     table.timestamp("created_at").defaultTo(knex.fn.now());
     table
       .timestamp("updated_at")
