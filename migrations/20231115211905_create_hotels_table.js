@@ -11,7 +11,7 @@ exports.up = function (knex) {
     table.varchar("hotel_location").notNullable();
     table.timestamp("checkin_date").notNullable();
     table.timestamp("checkout_date").notNullable();
-    table.varchar("budget").notNullable();
+    table.decimal("budget").notNullable();
     table.timestamp("created_at").defaultTo(knex.fn.now());
     table
       .timestamp("updated_at")
