@@ -4,7 +4,7 @@ const getActivities = async (_req, res) => {
   try {
     const data = await knex("calendar_activity").select(
       "id",
-      // "user_id",
+      "user_id",
       "date",
       "location",
       "morning_task",
@@ -41,7 +41,7 @@ const getOneActivity = async (req, res) => {
 
 const postActivity = async (req, res) => {
   if (
-    // !req.body.user_id ||
+    !req.body.user_id ||
     !req.body.date ||
     !req.body.location ||
     !req.body.morning_task ||
@@ -55,7 +55,7 @@ const postActivity = async (req, res) => {
   }
 
   const newActivity = {
-    // user_id: req.body.user_id,
+    user_id: req.body.user_id,
     date: req.body.date,
     location: req.body.location,
     morning_task: req.body.morning_task,
@@ -78,7 +78,7 @@ const postActivity = async (req, res) => {
 
 const editActivity = async (req, res) => {
   if (
-    // !req.body.user_id ||
+    !req.body.user_id ||
     !req.body.date ||
     !req.body.location ||
     !req.body.morning_task ||
@@ -91,7 +91,7 @@ const editActivity = async (req, res) => {
   }
 
   const updateActivity = {
-    // user_id: req.body.user_id,
+    user_id: req.body.user_id,
     date: req.body.date,
     location: req.body.location,
     morning_task: req.body.morning_task,

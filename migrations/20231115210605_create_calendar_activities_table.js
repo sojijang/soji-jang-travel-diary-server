@@ -5,9 +5,8 @@
 exports.up = function (knex) {
   return knex.schema.createTable("calendar_activity", (table) => {
     table.increments("id").primary();
-    // table.integer("user_id").unsigned().notNullable();
-    // table.foreign("user_id").references("id").inTable("user");
-    // table.varchar("user_id").notNullable();
+    table.integer("user_id").unsigned().notNullable();
+    table.foreign("user_id").references("id").inTable("user");
     table.varchar("date").notNullable();
     table.varchar("location").notNullable();
     table.varchar("morning_task").notNullable();

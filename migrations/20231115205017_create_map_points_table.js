@@ -7,11 +7,18 @@ exports.up = function (knex) {
     table.increments("id").primary();
     table.integer("user_id").unsigned().notNullable();
     table.foreign("user_id").references("id").inTable("user");
-    table.varchar("title").notNullable();
+    table
+      .enum("label", [
+        "restaurant",
+        "cafe",
+        "sightseeing",
+        "entertainment",
+        "activity",
+      ])
+      .notNullable();
     table.varchar("description").notNullable();
     table.double("lat").notNullable();
     table.double("lng").notNullable();
-
     table.timestamp("created_at").defaultTo(knex.fn.now());
     table
       .timestamp("updated_at")

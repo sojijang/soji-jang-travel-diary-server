@@ -1,12 +1,22 @@
 const knex = require("knex")(require("../knexfile"));
 
 const postPoint = async (req, res) => {
-  const newPoint = req.body;
+  const { user_id, label, description, lat, lng } = req.body;
+
+  const newPoint = {
+    user_id,
+    label,
+    description,
+    lat,
+    lng,
+  };
 
   try {
-    const [id] = await knex("map_point").insert(newPoint);
-    const savedPoint = await knex("map_point").where({ id }).first();
-    res.status(201).send(savedPoint);
+    const result = await knex("map_point").insert(newPoint);
+    const createdPoint = await knex("map_point")
+      .where({ id: result[0] })
+      .first();
+    res.status(201).send(createdPoint);
   } catch (error) {
     res.status(500).json({
       message: `Unable to add a new point: ${error}`,
@@ -27,7 +37,7 @@ const getOnePoint = async (req, res) => {
   try {
     const point = await knex("map_point").where({ id: req.params.id }).first();
 
-    if (point.length === 0) {
+    if (!point) {
       return res.status(404).send({
         message: `Map point with ID ${req.params.id} not found`,
       });
@@ -44,11 +54,12 @@ const getOnePoint = async (req, res) => {
 };
 
 const editPoint = async (req, res) => {
+  const { user_id, label, description } = req.body;
+
   const updatePoint = {
-    title: req.body.v,
-    description: req.body.description,
-    lat: req.body.lat,
-    lng: req.body.lng,
+    user_id,
+    label,
+    description,
   };
 
   try {
@@ -62,7 +73,7 @@ const editPoint = async (req, res) => {
         .send(`Map point with ID ${req.params.id} cannot be found`);
     }
     const response = await knex("map_point")
-      .select("title", "description", "lat", "lng")
+      .select("label", "description")
       .where({ id: req.params.id });
     res.status(200).json(response);
   } catch (error) {
@@ -90,4 +101,10 @@ const deletePoint = async (req, res) => {
   }
 };
 
-module.exports = { postPoint, getPoints, getOnePoint, editPoint, deletePoint };
+module.exports = {
+  postPoint,
+  getPoints,
+  getOnePoint,
+  editPoint,
+  deletePoint,
+};
