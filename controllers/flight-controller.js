@@ -3,7 +3,7 @@ const knex = require("knex")(require("../knexfile"));
 const postFlight = async (req, res) => {
   const {
     user_id,
-    depature_location,
+    departure_location,
     departure_etd,
     departure_eta,
     return_location,
@@ -14,7 +14,7 @@ const postFlight = async (req, res) => {
 
   const newFlight = {
     user_id,
-    depature_location,
+    departure_location,
     departure_etd,
     departure_eta,
     return_location,
@@ -66,7 +66,7 @@ const getOneFlight = async (req, res) => {
 const editFlight = async (req, res) => {
   const {
     user_id,
-    depature_location,
+    departure_location,
     departure_etd,
     departure_eta,
     return_location,
@@ -77,7 +77,7 @@ const editFlight = async (req, res) => {
 
   const updatedFlight = {
     user_id,
-    depature_location,
+    departure_location,
     departure_etd,
     departure_eta,
     return_location,
@@ -98,7 +98,7 @@ const editFlight = async (req, res) => {
     }
     const response = await knex("flight")
       .select(
-        "depature_location",
+        "departure_location",
         "departure_etd",
         "departure_eta",
         "return_location",

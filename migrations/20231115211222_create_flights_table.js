@@ -7,7 +7,7 @@ exports.up = function (knex) {
     table.increments("id").primary();
     table.integer("user_id").unsigned().notNullable();
     table.foreign("user_id").references("id").inTable("user");
-    table.varchar("depature_location").notNullable();
+    table.varchar("departure_location").notNullable();
     table.timestamp("departure_etd").notNullable();
     table.timestamp("departure_eta").notNullable();
     table.varchar("return_location").notNullable();
