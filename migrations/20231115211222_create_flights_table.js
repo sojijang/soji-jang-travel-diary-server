@@ -9,9 +9,7 @@ exports.up = function (knex) {
     table.foreign("user_id").references("id").inTable("user");
     table.varchar("departure_location").notNullable();
     table.timestamp("departure_etd").notNullable();
-    table.timestamp("departure_eta").notNullable();
     table.varchar("return_location").notNullable();
-    table.timestamp("return_etd").notNullable();
     table.timestamp("return_eta").notNullable();
     table.decimal("budget").notNullable();
     table.timestamp("created_at").defaultTo(knex.fn.now());

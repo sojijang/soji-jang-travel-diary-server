@@ -5,9 +5,7 @@ const postFlight = async (req, res) => {
     user_id,
     departure_location,
     departure_etd,
-    departure_eta,
     return_location,
-    return_etd,
     return_eta,
     budget,
   } = req.body;
@@ -16,9 +14,7 @@ const postFlight = async (req, res) => {
     user_id,
     departure_location,
     departure_etd,
-    departure_eta,
     return_location,
-    return_etd,
     return_eta,
     budget,
   };
@@ -68,9 +64,7 @@ const editFlight = async (req, res) => {
     user_id,
     departure_location,
     departure_etd,
-    departure_eta,
     return_location,
-    return_etd,
     return_eta,
     budget,
   } = req.body;
@@ -79,9 +73,7 @@ const editFlight = async (req, res) => {
     user_id,
     departure_location,
     departure_etd,
-    departure_eta,
     return_location,
-    return_etd,
     return_eta,
     budget,
   };
@@ -100,9 +92,7 @@ const editFlight = async (req, res) => {
       .select(
         "departure_location",
         "departure_etd",
-        "departure_eta",
         "return_location",
-        "return_etd",
         "return_eta",
         "budget"
       )

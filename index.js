@@ -9,7 +9,6 @@ const currencyRateRoutes = require("./routes/currency/rate");
 const calendarActivityRoutes = require("./routes/calendar/activity");
 const mapRoutes = require("./routes/map/map");
 const flightRoutes = require("./routes/booking/flight");
-const hotelRoutes = require("./routes/booking/hotel");
 
 const PORT = process.env.PORT || 5050;
 
